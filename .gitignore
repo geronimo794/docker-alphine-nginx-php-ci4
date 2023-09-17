@@ -1,0 +1,3 @@
+# Library folder
+source/vendor/*
+source/public/node_modules/*

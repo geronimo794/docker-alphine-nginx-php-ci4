@@ -1,0 +1,48 @@
+version: '3.5'
+
+services:
+  tap-web:
+    # image: ${IMAGE_REPO_NAME}:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # DEV: Bind Volume method direct to container directory
+      # -  ./source/:/var/www/html/
+      # PROD: Bind Volume method on source folder 
+      -  ./source/:/var/www/source/
+
+      # Bind volume for user data: Need always on #
+      # - ./files/session/:/var/www/html/writable/session/
+      - ./uploads/:/var/www/uploads/ 
+    ports:
+      - '8500:8080'
+    depends_on:
+      - composer_installation
+      - npm_installation
+    restart: unless-stopped
+
+  #######################
+  # Install depedencies #
+  #######################
+  # Install composer
+  composer_installation:
+    container_name: composer_installation
+    image: composer
+    volumes:
+      - ./source/:/app/
+    command: composer install --ignore-platform-reqs
+
+  # Install npm
+  npm_installation:
+    container_name: npm_installation
+    image: node:12.16.1-slim
+    working_dir: /app
+    volumes:
+      - ./source/public/:/app/
+    command: bash -c "npm install"
+
+networks:
+  default:
+    name: main-network
+    external: true
