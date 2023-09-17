@@ -13,8 +13,8 @@ services:
       -  ./source/:/var/www/source/
 
       # Bind volume for user data: Need always on #
-      # - ./files/session/:/var/www/html/writable/session/
-      - ./uploads/:/var/www/uploads/ 
+      - ./files/session/:/var/www/html/writable/session/
+      - ./files/uploads/:/var/www/html/writable/uploads/
     ports:
       - '8500:8080'
     depends_on:

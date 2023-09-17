@@ -1,3 +1,15 @@
 # Library folder
 source/vendor/*
 source/public/node_modules/*
+
+# Code igniter files
+# Delete this lines to commit CI to server
+source/app/*
+source/public/*
+source/tests/*
+source/writable/*
+source/env
+source/.env
+source/phpunit.xml.dist
+source/preload.php
+source/spark

@@ -52,7 +52,7 @@ RUN ln -s /usr/bin/php82 /usr/bin/php
 RUN apk add rsync
 
 # Add server initiator
-ADD server/init.sh /
+ADD config/init.sh /
 RUN chmod +x /init.sh
 
 # Switch to use a non-root user from here on
