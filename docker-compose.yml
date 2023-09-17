@@ -41,8 +41,3 @@ services:
     volumes:
       - ./source/public/:/app/
     command: bash -c "npm install"
-
-networks:
-  default:
-    name: main-network
-    external: true
