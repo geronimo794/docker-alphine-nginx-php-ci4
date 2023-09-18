@@ -42,8 +42,11 @@ COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Create writable folder
+RUN mkdir /var/www/html/writable
+
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
+RUN chown -R nobody.nobody /var/www/html  /var/www/html/writable /run /var/lib/nginx /var/log/nginx
 
 # Create symlink for php
 RUN ln -s /usr/bin/php82 /usr/bin/php
