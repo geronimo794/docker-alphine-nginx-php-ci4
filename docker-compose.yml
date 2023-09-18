@@ -27,7 +27,7 @@ services:
   #######################
   # Install composer
   composer_installation:
-    container_name: composer_installation
+    # container_name: composer_installation
     image: composer
     volumes:
       - ./source/:/app/
@@ -35,7 +35,7 @@ services:
 
   # Install npm
   npm_installation:
-    container_name: npm_installation
+    # container_name: npm_installation
     image: node:12.16.1-slim
     working_dir: /app
     volumes:
