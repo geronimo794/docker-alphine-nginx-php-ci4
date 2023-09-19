@@ -16,7 +16,7 @@ services:
       - ./files/session/:/var/www/html/writable/session/
       - ./files/uploads/:/var/www/html/writable/uploads/
     ports:
-      - '8500:8080'
+      - ${APPLICATION_PORT}:8080
     depends_on:
       - composer_installation
       - npm_installation
