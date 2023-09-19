@@ -57,6 +57,7 @@ RUN apk add rsync
 # Add server initiator
 ADD config/init.sh /
 RUN chmod +x /init.sh
+RUN chown nobody.nobody /init.sh
 
 # Switch to use a non-root user from here on
 USER nobody

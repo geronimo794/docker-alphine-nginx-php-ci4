@@ -7,10 +7,10 @@ set -x
 set -o allexport
 
 # If .env not exist then use format.env
-if [ -f build-push-image.env ]; then
-	source build-push-image.env
+if [ -f .env ]; then
+	source .env
 else
-	echo "Please populate the build-push-image.env file from build-push-image.env.format"
+	echo "Please populate the .env file from .env.format"
 	exit
 fi
 set +o allexport

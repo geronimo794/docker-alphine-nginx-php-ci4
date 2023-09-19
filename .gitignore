@@ -13,3 +13,6 @@ source/.env
 source/phpunit.xml.dist
 source/preload.php
 source/spark
+
+# ENV File
+.env
