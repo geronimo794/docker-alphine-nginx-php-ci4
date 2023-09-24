@@ -1,0 +1,20 @@
+# Get environment
+ARG GITHUB_REGISTRY
+ARG GITHUB_USERNAME
+ARG IMAGE_REPO_NAME
+ARG IMAGE_TAG
+
+# Form Registry
+FROM ${GITHUB_REGISTRY}/${GITHUB_USERNAME}/${IMAGE_REPO_NAME}:${IMAGE_TAG}
+
+# Temporary switch to root
+USER root
+
+# Install xdebug
+RUN apk add --no-cache php82-pecl-xdebug
+
+# Add configuration
+COPY config/xdebug.ini ${PHP_INI_DIR}/conf.d/xdebug.ini
+
+# Switch back to non-root user
+USER nobody

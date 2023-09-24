@@ -2,11 +2,17 @@ version: '3.5'
 
 services:
   tap-web:
-    # Direct Repo
-    image: ${GITHUB_REGISTRY}/${GITHUB_USERNAME}/${IMAGE_REPO_NAME}:${IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: DockerfileDevelopment
+      args:
+        - GITHUB_REGISTRY=${GITHUB_REGISTRY}
+        - GITHUB_USERNAME=${GITHUB_USERNAME}
+        - IMAGE_REPO_NAME=${IMAGE_REPO_NAME}
+        - IMAGE_TAG=${IMAGE_TAG}
     volumes:
-      # PROD: Bind Volume method on source folder 
-      -  ./source/:/var/www/source/
+      # DEV: Bind Volume method direct to container directory
+      -  ./source/:/var/www/html/
 
       # Bind volume for user data: Need always on #
       - ./files/session/:/var/www/html/writable/session/
