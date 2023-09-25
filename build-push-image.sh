@@ -37,3 +37,11 @@ echo $GITHUB_PAT | docker login ghcr.io --username $GITHUB_USERNAME --password-s
 
 # Push the image to github registry
 docker push $FULL_NEW_IMAGE_NAME
+
+###########################
+# Dev container image push
+###########################
+docker build --pull --rm -f "${DOCKER_FILE}Development" -t $IMAGE_REPO_NAME:$IMAGE_TAG-dev $(for i in $(grep -vE '^#|^$' .env); do out+="--build-arg $i " ; done; echo $out;out="") "."
+FULL_NEW_IMAGE_NAME_DEV=$GITHUB_REGISTRY/$GITHUB_USERNAME/$IMAGE_REPO_NAME:$IMAGE_TAG-dev
+docker tag $IMAGE_REPO_NAME:$IMAGE_TAG-dev $FULL_NEW_IMAGE_NAME_DEV
+docker push $FULL_NEW_IMAGE_NAME_DEV
