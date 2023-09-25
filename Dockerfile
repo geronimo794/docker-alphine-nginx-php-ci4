@@ -38,6 +38,7 @@ COPY config/conf.d /etc/nginx/conf.d/
 ENV PHP_INI_DIR /etc/php82
 COPY config/fpm-pool.conf ${PHP_INI_DIR}/php-fpm.d/www.conf
 COPY config/php.ini ${PHP_INI_DIR}/conf.d/custom.ini
+COPY config/upload.ini ${PHP_INI_DIR}/conf.d/upload.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
