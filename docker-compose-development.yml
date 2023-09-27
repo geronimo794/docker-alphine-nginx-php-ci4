@@ -24,6 +24,13 @@ services:
       - composer_installation
       - npm_installation
     restart: unless-stopped
+    # Limit default logging container
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        mode: non-blocking
 
   #######################
   # Install depedencies #
@@ -35,6 +42,13 @@ services:
     volumes:
       - ./source/:/app/
     command: composer install --ignore-platform-reqs
+    # Limit default logging container
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        mode: non-blocking
 
   # Install npm
   npm_installation:
@@ -44,3 +58,10 @@ services:
     volumes:
       - ./source/public/:/app/
     command: bash -c "npm install"
+    # Limit default logging container
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+        mode: non-blocking
