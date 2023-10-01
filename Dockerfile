@@ -27,6 +27,7 @@ RUN apk add --no-cache \
   php82-xml \
   php82-xmlreader \
   php82-xmlwriter \
+  php82-redis \
   supervisor
 
 # Configure nginx - http
